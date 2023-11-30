@@ -56,7 +56,7 @@ export default function Home() {
             </span>
             <Input type="search" className="focus:border focus:border-neutral-300 py-2 text-sm placeholder:text-neutral-500 placeholder:font-medium rounded-md pl-10" placeholder="Search..." autoComplete="off" />
           </div>
-          <Button className="w-44 py-5 font-semibold bg-white">+ Ask a Question</Button>
+          <Button className="w-44 py-5 font-semibold bg-white" onClick={e => window.location.href = "/discussions/create"}>+ Ask a Question</Button>
         </div>
         <div className="grid grid-cols-3 gap-6 mt-6">
           {discussionData.map((discussion: any) => {

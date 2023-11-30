@@ -16,8 +16,6 @@ export default function Home() {
   if (session) router.push("/");
   else router.push("/auth/login");
 
-  console.log(session);
-
   return <div>
     <MainLayout active="/auth/login" loggedIn={false} className="bg-black h-screen flex items-center justify-between flex-col">
       <div className="flex flex-col items-center p-6 gap-10">

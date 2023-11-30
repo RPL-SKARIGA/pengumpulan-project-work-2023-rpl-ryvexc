@@ -51,7 +51,6 @@ export async function POST(req: Request) {
 
 		return new NextResponse(JSON.stringify({ msg: "" }), { status: 200 });
 	} catch (e) {
-		console.log(e);
 		return new NextResponse(e as any, { status: 500 });
 	}
 }

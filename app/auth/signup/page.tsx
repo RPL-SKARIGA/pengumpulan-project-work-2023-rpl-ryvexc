@@ -67,10 +67,6 @@ export default function Home() {
       router.push('/auth/signup/emailsent')
   }
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   return <div>
     <MainLayout active="/auth/signup" loggedIn={false} className="bg-black h-screen flex items-center justify-between flex-col">
       <div className="flex flex-col justify-center h-full items-center p-6 gap-10">

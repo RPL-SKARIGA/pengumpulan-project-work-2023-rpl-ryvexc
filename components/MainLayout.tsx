@@ -2,6 +2,8 @@
 
 import { signOut, useSession } from "next-auth/react";
 import Header from "./Header";
+import { Header as AdminHeader } from "./admin/Header";
+import { Navbar as AdminNavbar } from "./admin/Navbar";
 import Navbar from "./Navbar";
 import { Inter } from "next/font/google";
 
@@ -11,8 +13,11 @@ export default function MainLayout({ loggedIn, children, active, className }: { 
   const { data: session } = useSession();
 
   return <main className={"w-full " + className + " " + inter.className}>
+    {/* {session} */}
     <Header loggedIn={loggedIn} userdata={session?.user} loginMode={!active.includes("/auth/signup")} />
-    {loggedIn && <Navbar active={active} />}
+    {loggedIn &&
+      <Navbar active={active} />
+    }
     {children}
   </main>
 }

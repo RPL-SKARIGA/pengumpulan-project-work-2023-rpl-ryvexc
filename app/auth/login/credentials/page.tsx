@@ -52,10 +52,6 @@ export default function Home() {
       router.push('/auth/login/credentials/verification')
   }
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   return <div>
     <MainLayout active="/auth/login" loggedIn={false} className="bg-black h-screen flex items-center justify-between flex-col">
       <div className="flex flex-col justify-center items-center p-6 gap-10 h-full">

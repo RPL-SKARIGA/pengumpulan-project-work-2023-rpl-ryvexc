@@ -13,7 +13,7 @@ import rehypeRaw from "rehype-raw";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 export function AnswerCard({ name, answeredAt, answer }: { name: string, answeredAt: string, answer: string }) {
   return <div className="items-center p-1 grid gap-2">
@@ -68,8 +68,6 @@ export function PeopleSkeleton() {
 export default function Home({ params }: { params: any }) {
   const { data: session } = useSession();
 
-  const router = useRouter();
-
   const [answerInput, setAnswerInput] = useState<string>("");
   const [loading, setLoading] = useState<boolean[]>([true, true]);
   const [discussions, setDiscussions] = useState<any>([]);
@@ -92,7 +90,12 @@ export default function Home({ params }: { params: any }) {
         dateAnswered: new Date(),
         question_id: params.id
       })
-    }).then(res => res.json())
+    }).then(res => {
+      if (res.ok) res.json()
+      else toast({
+        title: "Unable to send answer"
+      })
+    })
       .then(data => {
         fetchAnswers();
       })

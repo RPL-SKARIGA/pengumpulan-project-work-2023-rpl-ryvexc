@@ -101,7 +101,7 @@ export default function Header({ loggedIn, userdata, loginMode }: { loggedIn: bo
                   <span>Activity</span>
                   <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={e => router.replace("/settings")}>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>

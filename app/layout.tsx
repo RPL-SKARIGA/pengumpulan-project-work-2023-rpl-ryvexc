@@ -1,5 +1,3 @@
-"use client"
-
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -8,9 +6,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 import { ThemeProvider } from "@/components/theme-provider"
 
-import vercelIcon from "@/public/vercel.svg";
 import { Providers } from './provider'
 import { Toaster } from '@/components/ui/toaster'
+
+export const metadata: Metadata = {
+  title: 'Dashboard - MyWallet',
+  description: 'MyWallet',
+}
 
 export default function RootLayout({
   children,

@@ -105,6 +105,18 @@ export default function Home() {
       });
     }
 
+    else if (change == "delete") {
+      request = await fetch(`/api/v1/userprofile`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: "delete",
+        })
+      });
+    }
+
     const response = await request.json();
 
     if (response.modifiedCount > 0) {
@@ -152,9 +164,10 @@ export default function Home() {
       }
 
       <div className="flex p-12 px-[68px] bg-black">
-        <div className="w-96">
-          <div>
-            <Link href="/settings" className="text-sm font-semibold">General</Link>
+        <div className="w-96 pr-12">
+          <div className="grid">
+            <Link href="/settings" className="text-sm font-semibold hover:bg-neutral-900 duration-200 p-3 py-2 rounded">General</Link>
+            <Link href="/settings/discussion" className="text-sm text-neutral-400 font-medium hover:bg-neutral-900 duration-200 p-3 py-2 rounded">Discussion</Link>
           </div>
         </div>
         <div className="w-full grid gap-8">
@@ -221,7 +234,7 @@ export default function Home() {
           <OptionCard danger={true} title="Delete Account" footer={
             <>
               <p className="text-sm text-red-400">We will email you to verify the change.</p>
-              <Button className="bg-red-600 text-black" variant={"destructive"}>Delete Personal Account</Button>
+              <Button className="bg-red-600 text-black" onClick={e => updateUser(e, "delete")} variant={"destructive"}>Delete Personal Account</Button>
             </>
           }>
             <p className="text-sm my-3">

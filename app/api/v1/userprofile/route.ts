@@ -19,6 +19,13 @@ export async function POST(req: Request) {
 					},
 				},
 			);
+
+			await db.collection("activities").insertOne({
+				user_id: new ObjectId(body._id),
+				activity: "Updated your profile picture",
+				date: new Date(),
+			});
+
 			return NextResponse.json(result);
 		} else if (action == "updateAll") {
 			const result = await db.collection("users").updateOne(
@@ -29,7 +36,23 @@ export async function POST(req: Request) {
 					},
 				},
 			);
+
+			await db.collection("activities").insertOne({
+				user_id: new ObjectId(body._id),
+				activity: "Changed your name",
+				date: new Date(),
+			});
+
 			return NextResponse.json(result);
+		} else if (action == "delete") {
+			const result = await db.collection("users").updateOne(
+				{ _id: new ObjectId(body._id) },
+				{
+					$set: {
+						name: body.name,
+					},
+				},
+			);
 		}
 	} catch (e) {
 		return new NextResponse("", { status: 400 });

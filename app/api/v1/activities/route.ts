@@ -11,12 +11,15 @@ export async function POST(req: Request) {
 		const action = body.action;
 
 		if (action == "getActivity") {
-			const result = await db
+			let result = await db
 				.collection("activities")
 				.find({
 					user_id: new ObjectId(body.user_id),
 				})
 				.toArray();
+
+			result = result.reverse();
+
 			return NextResponse.json(result);
 		}
 	} catch (e) {

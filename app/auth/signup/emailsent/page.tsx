@@ -27,8 +27,6 @@ export default function Home() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    console.log(field);
-
     const res = await fetch("/api/v1/register", {
       method: "POST",
       headers: {

@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import vercelIcon from "@/public/vercel.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 function NavbarMenuItem({ children, href, active }: { children: any, href: string, active: boolean }): JSX.Element {
   return <div className={"pb-[6px] flex items-center" + (active ? " border-b-2 border-b-white" : "")}>
@@ -43,7 +42,6 @@ export default function Navbar({ active }: { active: string }): JSX.Element {
     <NavbarMenuItem href="/activity" active={active == "/activity"}>Activity</NavbarMenuItem>
     <NavbarMenuItem href="/transfer" active={active == "/transfer"}>Transfer</NavbarMenuItem>
     <NavbarMenuItem href="/discussions" active={active == "/discussions"}>Discussions</NavbarMenuItem>
-    <NavbarMenuItem href="/messages" active={active == "/messages"}>Messages</NavbarMenuItem>
     <NavbarMenuItem href="/settings" active={active == "/settings"}>Settings</NavbarMenuItem>
   </div >
 }

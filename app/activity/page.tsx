@@ -20,7 +20,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import profilePicture from "@/public/pfp.svg";
+import profilePicture from "@/public/pfp.svg"
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
@@ -28,12 +28,13 @@ export function DateSelectionMenu({ children, href }: { children: any, href: str
   return <a href={"/activity?range=" + href} className="hover:bg-neutral-800 p-2 py-2 text-sm rounded-sm font-medium">{children}</a>
 }
 
-export function ClientActivity({ name, activity, rangeFromNow }: { name: string, activity: string, rangeFromNow: string }) {
+export function ClientActivity({ name, activity, rangeFromNow, session }: { name: string, activity: string, rangeFromNow: string, session: any }) {
   return <div className="flex justify-between w-full items-center p-1">
     <div className="flex items-center">
       <Image
         width={30}
-        src={profilePicture}
+        height={30}
+        src={(session?.user as any)?.image}
         alt="Profile Picture"
         className="rounded-full mr-3"
       />
@@ -45,6 +46,9 @@ export function ClientActivity({ name, activity, rangeFromNow }: { name: string,
 
 export default function Home() {
   const { data: session } = useSession();
+  const currentDate = new Date();
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthName = months[currentDate.getMonth()];
 
   const params = useSearchParams();
   const range = params.get("range") || "last3day";
@@ -62,10 +66,10 @@ export default function Home() {
         action: "getActivity"
       })
     }).then(res => res.json())
-      .then(data => {
+      .then((data: any) => {
         setActivities(data);
       })
-  }, []);
+  }, [session]);
 
   const useClientAble = () => {
     if (range == "lastday") return "Last Day";
@@ -114,9 +118,9 @@ export default function Home() {
 
         <div className="p-3 w-full grid gap-8">
           <div>
-            <h2 className="font-bold mb-6">September 2023</h2>
+            <h2 className="font-bold mb-6">{monthName} {currentDate.getFullYear()}</h2>
             <div className='w-full grid gap-6 pl-2'>
-              {activities.map((activity: any) => <ClientActivity name="You" activity={activity.activity} rangeFromNow={activity.date as string} />)}
+              {activities.map((activity: any) => <ClientActivity session={session} name="You" activity={activity.activity} rangeFromNow={(activity.date as string).split("T")[0]} />)}
             </div>
           </div>
         </div>

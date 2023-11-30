@@ -9,9 +9,30 @@ export const discussions = [
 	},
 ];
 
-export const trackings = [
-	{ id: "001001001", name: "Tagihan Listrik", nominal: 201000 },
-	{ id: "001001002", name: "Tagihan Air", nominal: 150000 },
-	{ id: "001001003", name: "Tagihan Minyak", nominal: 100000 },
-	{ id: "001001004", name: "Utang", nominal: 100000 },
-];
+export const trackings = {
+	SENIN: [
+		{ id: "001001001", name: "Tagihan Listrik", nominal: 201000, day: 0 },
+		{ id: "001001002", name: "Tagihan Air", nominal: 150000, day: 0 },
+		{ id: "001001003", name: "Tagihan Minyak", nominal: 100000, day: 0 },
+		{ id: "001001004", name: "Utang", nominal: 100000, day: 0 },
+	],
+	SELASA: [
+		{ id: "001001001", name: "Tagihan Listrik", nominal: 201000, day: 1 },
+		{ id: "001001004", name: "Utang", nominal: 100000, day: 1 },
+	],
+	RABU: [],
+	KAMIS: [{ id: "001001004", name: "Utang", nominal: 100000, day: 3 }],
+	JUMAT: [
+		{ id: "001001001", name: "Tagihan Listrik", nominal: 201000, day: 4 },
+		{ id: "001001002", name: "Tagihan Air", nominal: 150000, day: 4 },
+		{ id: "001001003", name: "Tagihan Minyak", nominal: 100000, day: 4 },
+	],
+	SABTU: [
+		{ id: "001001001", name: "Tagihan Listrik", nominal: 201000, day: 5 },
+		{ id: "001001004", name: "Utang", nominal: 100000, day: 5 },
+	],
+	MINGGU: [
+		{ id: "001001001", name: "Tagihan Listrik", nominal: 201000, day: 6 },
+		{ id: "001001004", name: "Dolan", nominal: 100000, day: 6 },
+	],
+};

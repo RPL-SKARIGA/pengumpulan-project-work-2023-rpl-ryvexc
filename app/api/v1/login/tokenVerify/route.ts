@@ -38,7 +38,6 @@ export async function GET(req: Request) {
 				status: 400,
 			});
 	} catch (e) {
-		console.log(e);
 		return new NextResponse(e as any, { status: 500 });
 	}
 }

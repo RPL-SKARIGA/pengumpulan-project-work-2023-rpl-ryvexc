@@ -37,7 +37,6 @@ export default function Home() {
 
     if (res.status == 200) {
       const result = await res.json();
-      console.log(result);
       await signIn("credentials", { email: result.email, token: result.token, redirect: false })
       router.push("/");
     } else {
